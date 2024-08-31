@@ -16,17 +16,19 @@ import Card from "@/components/shop_card";
 import Categories from "@/components/categories";
 
 import axios from "axios";
+import { categories } from "@/data/categories.data";
 
 export default function HomeScreen() {
-  const [categories, setCategories] = useState([]);
-  const [topDishes, setTopDishes] = useState<any>([]);
-  const[bestSellingDishes,setBestSellingDishes]=useState<any>([]);
+  // const [categories, setCategories] = useState([]);
+  // const [topDishes, setTopDishes] = useState<any>([]);
+  // const[bestSellingDishes,setBestSellingDishes]=useState<any>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://10.5.222.144:8000/menu/all"); // Replace with your backend URL
-        setCategories(response.data);
+        const response = await axios.get("http://192.168.1.65:8000/menu/all"); // Replace with your backend URL
+        
+        // setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
@@ -38,8 +40,8 @@ export default function HomeScreen() {
   useEffect(() => {
     const fetchTopDishes = async () => {
       try {
-        const response = await axios.get("http://10.5.222.144:8000/dish/chicken"); // Replace with your backend URL
-        setTopDishes(response.data.dishes);
+        const response = await axios.get("http://192.168.1.65:8000/dish/chicken"); // Replace with your backend URL
+        // setTopDishes(response.data.dishes);
         console.log("==============")
        
       } catch (error) {
@@ -53,8 +55,8 @@ export default function HomeScreen() {
   useEffect(() => {
     const fetchBestSellingDishes = async () => {
       try {
-        const response = await axios.get("http://10.5.222.144:8000/dish/cheese"); // Replace with your backend URL
-        setBestSellingDishes(response.data.dishes);
+        const response = await axios.get("http://192.168.1.65:8000/dish/cheese"); // Replace with your backend URL
+        // setBestSellingDishes(response.data.dishes);
         console.log("==============")
         
       } catch (error) {
@@ -89,7 +91,7 @@ export default function HomeScreen() {
           }}
           data={categories}
           keyExtractor={(item: any) => item?.id.toString()}
-          renderItem={({ item }) => <Categories name={item.name}  />}
+          renderItem={({ item }) => <Categories name={item.name} icon={item.icon}  />}
         />
       </View>
       <View>
@@ -102,7 +104,7 @@ export default function HomeScreen() {
             justifyContent: "space-around",
             paddingLeft: 13,
           }}
-          data={topDishes}
+          data={restaurants}
           keyExtractor={(item: any) => item?.id.toString()}
           renderItem={({ item }) => <Card product={item} />}
         />
@@ -117,7 +119,7 @@ export default function HomeScreen() {
             justifyContent: "space-around",
             paddingLeft: 13,
           }}
-          data={bestSellingDishes}
+          data={restaurants}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <Card product={item} />}
         />

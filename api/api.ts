@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as SecureStore from "expo-secure-store";
-const apiUrl = 'http://10.5.222.144:8000';
+const apiUrl = 'http://192.168.1.65:8000';
 
 // Axios instance with interceptors for authenticated requests
 const api = axios.create({

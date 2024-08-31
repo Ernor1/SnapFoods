@@ -37,7 +37,7 @@ const Cart: React.FC<Props> = ({ product }) => {
           keyExtractor={(item) => item?.id?.toString()}
           renderItem={({ item }) => (
             <View className="flex-row justify-between items-center mb-4">
-              <Image source={{uri:item?.picture}} className="w-16 h-16" />
+              <Image source={item.image} className="w-16 h-16" />
               <View className="flex-1 ml-4">
                 <Text className="text-lg font-bold">{item?.name}</Text>
                 <Text className="text-sm">{item?.quantity} pcs</Text>

@@ -19,7 +19,7 @@ const SignUp = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const API_URL = "http://10.5.222.144:8000"; // Adjust this to your backend URL
+  const API_URL = "http://192.168.1.65:8000"; // Adjust this to your backend URL
 
   const handleSignUp = async () => {
     try {

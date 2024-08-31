@@ -4,6 +4,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import {useCart} from '@/cart_context'
+import * as SecureStore from "expo-secure-store";
 
 
 type Props={
@@ -14,7 +15,8 @@ product?:any
 const Card:React.FC<Props> = ({ product}) => {
   const router= useRouter();
   const { dispatch } = useCart();
-  const handleCardPress = () => {
+  const handleCardPress = async() => {
+    await SecureStore.deleteItemAsync("token");
     // Navigate to the detail page, passing the product as a parameter
     router.push({
       pathname: 'details/[id]',
@@ -29,7 +31,7 @@ const Card:React.FC<Props> = ({ product}) => {
     <TouchableOpacity  className="m-2"  onPress={handleCardPress}>
       <View className="flex-col border border-gray-300 rounded-lg overflow-hidden w-44 h-64 items-center justify-around">
         <View className="items-center justify-center mt-2">
-          <Image source={{uri:product?.picture}} className="w-24 h-24" />
+          <Image source={product.image} className="w-24 h-24" />
         </View>
         <View className="flex-1 items-center justify-center w-full p-2">
           <View className="mb-2">

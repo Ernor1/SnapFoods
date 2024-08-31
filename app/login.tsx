@@ -13,7 +13,7 @@ import * as SecureStore from "expo-secure-store";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const API_URL = "http://10.5.222.144:8000";
+  const API_URL = "http://192.168.1.65:8000";
 
   const handleSignIn = async () => {
     try {
@@ -21,6 +21,7 @@ const SignIn = () => {
         email: email,
         password: password,
       };
+      console.log(userData);
       const response = await axios.post(`${API_URL}/user/login`, userData);
       await SecureStore.setItemAsync("token", response.data.token);
       const token = await SecureStore.getItemAsync("token");
